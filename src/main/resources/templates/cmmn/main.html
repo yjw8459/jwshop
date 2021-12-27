@@ -1,13 +1,126 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
 </head>
+
 <body>
-    <div class="container">
+
+    <p th:text="${result.name}">Welcome to our grocery store!</p>
+    <input class="form-control" type="text" th:value="${result.name}">
+    <p th:text="${result.name}">Welcome to our grocery store!</p>
+    <p th:text="${result.name}">Welcome to our grocery store!</p>
+
+    <!--   별표구문    -->
+    <div th:object="${result}">
+        <p>Name: <span th:text="*{name}">Sebastian</span>.</p>
+        <p>Surname: <span th:text="*{age}">Pepper</span>.</p>
+        <p>Nationality: <span th:text="*{mail}">Saturn</span>.</p>
+    </div>
+
+    <a href="details.html"
+       th:href="@{http://localhost:8080/details(orderId=${result.id})}">view</a>
+    <a href="details.html"
+       th:href="@{http://localhost:8080/details(orderId=${result.id})}">view</a>
+    <a href="details.html"
+       th:href="@{http://localhost:8080/details(orderId=${result.id})}">view</a>
+
+    <br>
+    <a th:href="@{${url}(orderId=${result.id})}">view</a>
+    <a th:href="@{'/details/'+${result.name}(orderId=${result.id})}">view</a>
+
+    <p>Please select an option</p>
+    <ol>
+        <li><a href="product/list.html" th:href="@{/product/list}">Product List</a></li>
+        <li><a href="order/list.html" th:href="@{/order/list}">Order List</a></li>
+        <li><a href="subscribe.html" th:href="@{/subscribe}">Subscribe to our Newsletter</a></li>
+        <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
+    </ol>
+
+<!--    <p>-->
+<!--        Today is: <span th:text="${#calendars.format(${new Date()},'dd MMMM yyyy')}">13 May 2011</span>-->
+<!--    </p>-->
+
+    <p>
+        Now you are looking at a <span th:text="'working web application'">template file</span>.
+    </p>
+
+    <p>The year is <span th:text="2013">1492</span>.</p>
+    <p>In two years, it will be <span th:text="2013 + 2">1494</span>.</p>
+
+<!--    <div th:if="${user.isAdmin()} == false">-->
+
+    <div th:if="${false} == false">
 
     </div>
 
+
+    <span th:text="'The name of the user is ' + ${result.name}"></span>
+    <span th:text="|Welcome to our application, ${result.name}!|"></span>
+    <span th:text="'Welcome to our application, ' + ${result.name} + '!'"></span>
+    <span th:text="${result.name} + ' ' + |${result.age}, ${result.mail}|"></span>
+    <div th:with="isEven=${result.age % 2 == 0}"></div>
+    <div th:with="isEven=(${result.age} % 2 == 0)"></div>
+
+
+    <div th:if="${result.age} &gt; 20"></div>
+    <span th:text="'Execution mode is ' + ( (${result.id} == 'dev')? 'Development' : 'Production')">
+
+    </span>
+
+<!--    조건식 괄호 중첩 -->
+    <tr th:class="${result.id}? (${result.id}? 'first' : 'even') : 'odd'">
+        ...
+    </tr>
+<!--   else 생략 -->
+    <tr th:class="${result.id}? 'alt'">
+        ...
+    </tr>
+
+<!--   age가 있을 때 age or no age specified  -->
+    <div th:object="${result}">
+        ...
+        <p>Age: <span th:text="*{age}?: '(no age specified)'">27</span>.</p>
+    </div>
+    <span th:text="${result.name} ?: _">no user authenticated</span>
+
+    <img src="../../images/gtvglogo.png"
+         th:attr="src=@{/images/gtvglogo.png},title=#{logo},alt=#{logo}" />
+    <img src="../../images/gtvglogo.png"
+         th:src="@{/images/gtvglogo.png}" th:title="#{logo}" th:alt="#{logo}" />
+
+    <tr th:each="prod : ${prods}" class="row" th:classappend="${prodStat.odd}? 'odd'">
+
+        <table>
+            <tr>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>IN STOCK</th>
+            </tr>
+            <tr th:each="prod : ${prods}">
+                <td th:text="${prod.name}">Onions</td>
+                <td th:text="${prod.price}">2.41</td>
+                <td th:text="${true}? #{true} : #{false}">yes</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>IN STOCK</th>
+            </tr>
+            <tr th:each="prod,iterStat : ${prods}" th:class="${iterStat.odd}? 'odd'">
+                <td th:text="${prod.name}">Onions</td>
+                <td th:text="${prod.price}">2.41</td>
+                <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+            </tr>
+        </table>
+
 </body>
+
 </html>
