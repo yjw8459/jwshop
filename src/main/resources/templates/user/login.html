@@ -1,9 +1,12 @@
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <script src="../../static/js/jquery-3.6.0.min.js"></script>
-        <script src="../../static/js/bootstrap/bootstrap.js"></script>
-        <link href="../../static/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <script th:src="@{/js/jquery-3.6.0.min.js}"
+                src="../../static/js/jquery-3.6.0.min.js"></script>
+        <script th:src="@{/js/bootstrap/bootstrap.js}"
+                src="../../static/js/bootstrap/bootstrap.js"></script>
+        <link   th:href="@{/css/bootstrap/bootstrap.css}"
+                href="../../static/css/bootstrap/bootstrap.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -18,12 +21,12 @@
                         </div>
                        <form action="" method="post" name="login">
                                <div class="form-group">
-                                  <label >ID</label>
-                                  <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter ID">
+                                  <label >ID</label>            <!-- aria-describedby="emailHelp" -->
+                                  <input type="text" name="id"  class="form-control" id="email"  placeholder="Enter ID">
                                </div>
                                <div class="form-group">
                                   <label >Password</label>
-                                  <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                                  <input type="password" name="password" id="password"  class="form-control" placeholder="Enter Password">
                                </div>
                                <div class="form-group">
                                   <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
@@ -46,7 +49,8 @@
                 </div>
 
             </div>
-          </div>   
+          </div>
+        </div>
     </body>
 </html>
 
