@@ -14,3 +14,10 @@ Dependency
   - Thymeleaf
   - JPA
 
+
+
+  기타 사용
+    - 부트스트랩
+    - 로컬스토리지
+    - 쿠키
+    
