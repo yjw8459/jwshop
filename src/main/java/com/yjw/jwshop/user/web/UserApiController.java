@@ -1,7 +1,6 @@
 package com.yjw.jwshop.user.web;
 
 import com.yjw.jwshop.user.service.UserService;
-import com.yjw.jwshop.user.vo.UserApiVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApiController {
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/login")
     public int login(UserApiVO userApiVO){
-
-        return 0;
+        return userService.loginProcess(userApiVO);
     }
 
 }
