@@ -1,14 +1,12 @@
 package com.yjw.jwshop.user.mapper;
 
+import com.yjw.jwshop.common.vo.constant.SEX;
 import com.yjw.jwshop.user.web.UserApiVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -25,6 +23,13 @@ public class UserVO {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "mail")
+    private String email;
+
+    @Column(name = "sex")
+    @Enumerated(EnumType.STRING)
+    private SEX sex;
 
     @Column(name = "in_date")
     private String date;

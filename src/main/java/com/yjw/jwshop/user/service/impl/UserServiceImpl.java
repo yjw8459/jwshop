@@ -1,11 +1,15 @@
 package com.yjw.jwshop.user.service.impl;
 
+import com.yjw.jwshop.common.util.ContextUtil;
 import com.yjw.jwshop.user.mapper.UserMapper;
 import com.yjw.jwshop.user.mapper.UserVO;
 import com.yjw.jwshop.user.service.UserService;
 import com.yjw.jwshop.user.web.UserApiVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.naming.Context;
 
 @Service
 @RequiredArgsConstructor
@@ -15,14 +19,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int loginProcess(UserApiVO userApiVO) {
-
-        return 0;
+        UserVO user = userMapper.findOne(userApiVO.getId());
+        if ( user == null )
+            new IllegalArgumentException("회원 정보가 존재하지 않습니다.");
+        ContextUtil.setSessionContext("userDataVO", user);
+        return 1;
     }
 
     @Override
-    public int signup(UserApiVO userApiVO){
+    @Transactional
+    public int signUp(UserApiVO userApiVO){
+        int result = 1;
+        if ( duplicate(userApiVO.getId()) < 1 ) result = 0;
         UserVO user = new UserVO(userApiVO);
         userMapper.save(user);
-        return 0;
+        return result;
     }
+
+    @Override
+    public int duplicate(String id) {
+        int result = 1;
+        if ( userMapper.findOne(id) != null ){
+            new IllegalArgumentException("중복된 아이디입니다.").printStackTrace();
+            result = 0;
+        }
+        return result;
+    }
+
 }
