@@ -3,6 +3,7 @@ package com.yjw.jwshop.common.web;
 import com.yjw.jwshop.common.vo.TestVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class CommonController {
 
     @GetMapping
-    public ModelAndView main(){
+    public ModelAndView test(){
         TestVO result = new TestVO("유종원", "피이지");
         List<TestVO> list = new ArrayList<>();
         return new ModelAndView("/cmmn/main")
@@ -25,5 +26,12 @@ public class CommonController {
                     .addObject("prods", list)
                 ;
     }
+
+    @GetMapping(value = "/main")
+    public ModelAndView main(){
+
+        return new ModelAndView("/common/main");
+    }
+
 
 }

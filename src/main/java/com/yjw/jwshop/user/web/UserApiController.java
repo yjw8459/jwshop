@@ -3,13 +3,11 @@ package com.yjw.jwshop.user.web;
 import com.yjw.jwshop.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(value = "/user/api")
 public class UserApiController {
     private final UserService userService;
 
