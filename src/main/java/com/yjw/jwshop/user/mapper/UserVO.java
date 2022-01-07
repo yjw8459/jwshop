@@ -1,5 +1,6 @@
 package com.yjw.jwshop.user.mapper;
 
+import com.yjw.jwshop.common.constraint.GRADE;
 import com.yjw.jwshop.common.vo.constant.SEX;
 import com.yjw.jwshop.user.web.api.UserApiVO;
 import lombok.Getter;
@@ -24,6 +25,10 @@ public class UserVO {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "name")
+    private String name;
+
+
     @Column(name = "mail")
     private String email;
 
@@ -31,10 +36,16 @@ public class UserVO {
     @Enumerated(EnumType.STRING)
     private SEX sex;
 
+    @Column(name = "member_grade")
+    private GRADE grade;
+
+    @Column(name = "sign_up_date")
+    private String signUpDate;
+
     @Column(name = "in_date")
     private String date;
 
-    @Column(name = "update_date")
+    @Column(name = "up_date")
     private String updateDate;
 
     public UserVO(UserApiVO userApiVO){
