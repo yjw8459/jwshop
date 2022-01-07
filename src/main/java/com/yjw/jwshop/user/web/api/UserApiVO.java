@@ -1,4 +1,4 @@
-package com.yjw.jwshop.user.web;
+package com.yjw.jwshop.user.web.api;
 
 import lombok.Data;
 

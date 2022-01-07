@@ -1,7 +1,7 @@
 package com.yjw.jwshop.user.mapper;
 
 import com.yjw.jwshop.common.vo.constant.SEX;
-import com.yjw.jwshop.user.web.UserApiVO;
+import com.yjw.jwshop.user.web.api.UserApiVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

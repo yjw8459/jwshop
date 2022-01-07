@@ -1,9 +1,10 @@
-package com.yjw.jwshop.user.web;
+package com.yjw.jwshop.user.web.api;
 
 import com.yjw.jwshop.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -12,12 +13,12 @@ public class UserApiController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public int login(UserApiVO userApiVO){
+    public int login(@Valid UserApiVO userApiVO){
         return userService.loginProcess(userApiVO);
     }
 
     @PostMapping("/signUp")
-    public int signUp(@RequestBody UserApiVO userApiVO){
+    public int signUp(@Valid @RequestBody UserApiVO userApiVO){
         return userService.signUp(userApiVO);
     }
 

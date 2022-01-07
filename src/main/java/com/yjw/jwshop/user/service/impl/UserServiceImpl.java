@@ -4,12 +4,10 @@ import com.yjw.jwshop.common.util.ContextUtil;
 import com.yjw.jwshop.user.mapper.UserMapper;
 import com.yjw.jwshop.user.mapper.UserVO;
 import com.yjw.jwshop.user.service.UserService;
-import com.yjw.jwshop.user.web.UserApiVO;
+import com.yjw.jwshop.user.web.api.UserApiVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.naming.Context;
 
 @Service
 @RequiredArgsConstructor
