@@ -1,6 +1,7 @@
 package com.yjw.jwshop.user.mapper;
 
 import com.yjw.jwshop.common.constraint.GRADE;
+import com.yjw.jwshop.common.vo.TimeStamp;
 import com.yjw.jwshop.common.vo.constant.SEX;
 import com.yjw.jwshop.user.web.api.UserApiVO;
 import lombok.Getter;
@@ -42,17 +43,12 @@ public class UserVO {
     @Column(name = "sign_up_date")
     private String signUpDate;
 
-    @Column(name = "in_date")
-    private String date;
-
-    @Column(name = "up_date")
-    private String updateDate;
+    @Embedded
+    private TimeStamp timeStamp;
 
     public UserVO(UserApiVO userApiVO){
         id = userApiVO.getId();
         password = userApiVO.getPassword();
-        date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        updateDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
     }
 
 }
